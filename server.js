@@ -7,14 +7,14 @@ var exec = require('child_process').exec,
 var requests = 0;
 var playing = 0;
 
-// Function to download file using wget
+// Start the Media player given a file URL
 var startPlayer = function(fileUrl) {
 
     var command = 'ls -Alh /Users/philc; sleep 5;';
-
     var child = exec(command, function(err, stdout, stderr) {
 	    if (err) throw err;
-	    else {		
+	    else {
+		// When the child process returns, we can mark the player as stopped.
 		console.log("Player child returned!");
 		playing = 0;
 	    }
@@ -24,6 +24,7 @@ var startPlayer = function(fileUrl) {
     playing = 1;
 };
 
+// Play API call
 function play(req, res, next) {
 
     requests++;
@@ -38,15 +39,6 @@ function play(req, res, next) {
 	console.log("Something else is already playing. Wait for it to finish first.");
 	res.send(500, "Playback in progress, come back later.");
     }
-
-    // if (player.state == stopped) {
-    //     player.start(req.body.url);
-    // }
-    // else {
-    //     player.stop();
-    //     player.start(req.body.url);
-    // }
-
 }
 
 var server = restify.createServer();
