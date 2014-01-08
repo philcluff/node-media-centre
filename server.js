@@ -1,8 +1,10 @@
 var restify = require('restify');
-var ps = require('ps-node');
 var url = require('url');
 var exec = require('child_process').exec,
     child;
+
+// Configuration loaded from ENV
+var player = process.env.OMX_PLAYER
 
 var requests = 0;
 var playing = 0;
@@ -10,7 +12,7 @@ var playing = 0;
 // Start the Media player given a file URL
 var startPlayer = function(fileUrl) {
 
-    var command = 'ls -Alh /Users/philc; sleep 5;';
+    var command = player + ' -b ' + fileUrl;
     var child = exec(command, function(err, stdout, stderr) {
 	    if (err) throw err;
 	    else {
