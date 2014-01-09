@@ -3,6 +3,9 @@ var restify = require('restify');
 var url = require('url');
 var exec = require('child_process').exec,
     child; // Note that child is replaced every time a player is spawned.
+// Used for tracking the player exit events
+var events = require('events');
+var emitter = new events.EventEmitter();
 
 // Configuration loaded from ENV
 var player = process.env.OMX_PLAYER;
@@ -22,6 +25,7 @@ function startPlayer(fileUrl) {
 		// When the child process returns, we can mark the player as stopped.
 		console.log("Player child returned!");
 		playing = 0;
+		emitter.emit('playbackEnd');
 	    }
 	});
 
@@ -41,8 +45,13 @@ function play(req, res, next) {
 	res.send(201, "Playback Started.");
     }
     else {
+	    // Register event listener for the child process, containing next URL
+	    emitter.once('playbackEnd', function () {
+		console.log('Event handler fired.');
+		startPlayer(req.body.url);
+	    });
+
 	child.stdin.write('q');
-	startPlayer(req.body.url);
 	res.send(201, "Changed Video.");
     }
 }
