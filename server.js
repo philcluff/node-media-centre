@@ -14,6 +14,11 @@ var player = process.env.OMX_PLAYER;
 var requests = 0;
 var playing = 0;
 
+function logAndIncrementRequestId() {
+    requests++;
+    console.log('Request ID: ' + requests);
+}
+
 // Start the Media player given a file URL
 function startPlayer(fileUrl) {
 
@@ -36,32 +41,30 @@ function startPlayer(fileUrl) {
 // Play API call
 function play(req, res, next) {
 
-    requests++;
-    console.log('Got request to play url: ' +  req.body.url);
-    console.log('Request ID: ' + requests);
+    logAndIncrementRequestId();
+    console.log('>> POST: api/player/play | ' + req.body.url + ' <<');
 
     if (playing === 0) {
 	startPlayer(req.body.url);
-	res.send(201, "Playback Started.");
+	res.send(201, "Playback requested.");
     }
     else {
-	    // Register event listener for the child process, containing next URL
-	    emitter.once('playbackEnd', function () {
+	// Register event listener for the child process, containing next URL
+	emitter.once('playbackEnd', function () {
 		console.log('Event handler fired.');
 		startPlayer(req.body.url);
 	    });
 
 	child.stdin.write('q');
-	res.send(201, "Changed Video.");
+	res.send(201, "Playback change requested.");
     }
 }
 
 // Stop API call
 function stop(req, res, next) {
 
-    requests++;
-    console.log('Got request to stop!');
-    console.log('Request ID: ' + requests);
+    logAndIncrementRequestId();
+    console.log('>> POST: api/player/stop << ');
 
     if (playing === 1) {
 	child.stdin.write('q');
@@ -73,12 +76,11 @@ function stop(req, res, next) {
     }
 }
 
-// Stop API call
+// Pause API call
 function pause(req, res, next) {
 
-    requests++;
-    console.log('Got request to pause!');
-    console.log('Request ID: ' + requests);
+    logAndIncrementRequestId();
+    console.log('>> POST: api/player/pause << ');
 
     if (playing === 1) {
 	child.stdin.write('p');
