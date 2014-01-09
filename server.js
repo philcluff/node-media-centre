@@ -12,7 +12,7 @@ var requests = 0;
 var playing = 0;
 
 // Start the Media player given a file URL
-var startPlayer = function(fileUrl) {
+function startPlayer(fileUrl) {
 
     var command = player + ' ' + fileUrl;
     console.log(command);
@@ -41,8 +41,9 @@ function play(req, res, next) {
 	res.send(201, "Playback Started.");
     }
     else {
-	console.log("Something else is already playing. Wait for it to finish first.");
-	res.send(500, "Playback in progress, come back later.");
+	child.stdin.write('q');
+	startPlayer(req.body.url);
+	res.send(201, "Changed Video.");
     }
 }
 
