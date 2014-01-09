@@ -1,0 +1,7 @@
+_Useful References_
+
+Node.js (Latest) on Pi:              http://www.raspberrypi.org/forums/viewtopic.php?f=66&t=54817
+OMXPlayer control via FIFO:          http://www.raspberrypi.org/forums/viewtopic.php?f=38&t=7987
+OMXPlayer (Latest):                  http://omxplayer.sconde.net/
+PLEX Library for XBMC API:           https://github.com/NineWorlds/serenity-android/tree/master/plexapp-rest-library
+Some good references for HDMI-CEC:   http://www.raspberrypi.org/phpBB3/viewtopic.php?f=35&t=15749
