@@ -2,7 +2,7 @@
 var restify = require('restify');
 var url = require('url');
 var exec = require('child_process').exec,
-    child;
+    child; // Note that child is replaced every time a player is spawned.
 
 // Configuration loaded from ENV
 var player = process.env.OMX_PLAYER;
