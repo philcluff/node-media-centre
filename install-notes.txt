@@ -1,2 +1,5 @@
 _Some installation notes_
 
+Requires:
+* Node.js >= v0.10.24
+** restify >= 2.6.1
