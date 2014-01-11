@@ -12,7 +12,7 @@ server.post('/api/player/stop', mediaPlayer.stop);
 server.post('/api/player/pause', mediaPlayer.pause);
 
 // Media Library API
-server.get('/api/media/tvshows', plex.getAllTvShows);
+server.get('/api/media/tvshows', mediaLibrary.getAllTvShows);
 
 server.listen(8080, function() {
     console.log('%s listening at %s', server.name, server.url);
