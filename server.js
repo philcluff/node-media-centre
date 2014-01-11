@@ -13,6 +13,7 @@ server.post('/api/player/pause', mediaPlayer.pause);
 
 // Media Library API
 server.get('/api/media/tvshows', mediaLibrary.getAllTvShows);
+server.get('/api/media/children/:key', mediaLibrary.getChildrenByKey);
 
 server.listen(8080, function() {
     console.log('%s listening at %s', server.name, server.url);
