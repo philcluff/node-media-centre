@@ -2,46 +2,31 @@
 <head>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
-var sel = 0;
 
 $( document ).ready(function() {
-$("body").keydown(function(e) {
+    $("body").keydown(function(e) {
+        $( "#last-key" ).text("Last Key: " + e.which);
+        console.log(e.which);
 
-//  if(e.which == 37) {
-//      alert("37");
-//      console.log("37");
-//  }
-//  else if(e.which == 39) {
-//      alert("39");
-//      console.log("39");
-//  }
-
-$( "#last-key" ).text("Last Key: " + e.which);
-console.log(e.which);
-
-var jqxhr = $.get( "plex.html", function() {
-  alert( "success" );
+        if(e.which == 37) {
+            var jqxhr = $.getJSON( "/api/media/tvshows", function(data) {
+                alert( "success" );
+                console.log(data);
+                for (var i = 0; i < data.length; i++) {
+	            console.log('+ ' + data[i].attributes.title);
+                }  
+            });
+        }
+        else if(e.which == 39) {
+        }
+    });
 });
 
-  if(e.which == 37) {
-
-  }
-
-  else if(e.which == 39) {
-
-  }
-
-
-});
-});
 </script>
 </head>
 <body>
 <p>Hello, World</p>
 <p id="last-key">Last Key: none</p>
-<ul>
-<li>TV Shows</li>
-<li>Movies</li>
-</ul>
+<ul />
 </body>
 </html>
