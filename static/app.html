@@ -10,11 +10,14 @@ $( document ).ready(function() {
 
         if(e.which == 37) {
             var jqxhr = $.getJSON( "/api/media/tvshows", function(data) {
-                alert( "success" );
+                //alert( "success" );
                 console.log(data);
+                var items = [];
                 for (var i = 0; i < data.length; i++) {
-	            console.log('+ ' + data[i].attributes.title);
-                }  
+                    //console.log('+ ' + data[i].attributes.title);
+	            items.push("<li>" + data[i].attributes.title + "</li>");
+                }
+            $( "#main-list" ).append(items.join( "" ));
             });
         }
         else if(e.which == 39) {
@@ -27,6 +30,9 @@ $( document ).ready(function() {
 <body>
 <p>Hello, World</p>
 <p id="last-key">Last Key: none</p>
-<ul />
+<table border="1">
+    <tr><th>Show</th><th>Series</th><th>Episode</th></tr>
+    <tr><td><ul id="main-list" /></td><td /><td /></tr>
+</table>
 </body>
 </html>
