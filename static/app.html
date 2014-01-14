@@ -3,22 +3,28 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
 
+function loadRoot() {
+    $( "#loading" ).text("Loading...");
+    var jqxhr = $.getJSON( "/api/media/tvshows", function(data) {
+        var items = [];
+        for (var i = 0; i < data.length; i++) {
+            items.push("<li onclick=\"loadSeriesList(this.id)\" id=\"" + data[i].attributes.key  + "\">" + data[i].attributes.title + "</li>");
+        }
+        $( "#show" ).append(items.join( "" ));
+        $( "#loading" ).text("");
+    });
+}
+
+function loadSeriesList(key) {
+    console.log("Click: " + key);
+}
+
 $( document ).ready(function() {
     $("body").keydown(function(e) {
         $( "#last-key" ).text("Last Key: " + e.which);
         console.log(e.which);
-
         if(e.which == 37) {
-            var jqxhr = $.getJSON( "/api/media/tvshows", function(data) {
-                //alert( "success" );
-                console.log(data);
-                var items = [];
-                for (var i = 0; i < data.length; i++) {
-                    //console.log('+ ' + data[i].attributes.title);
-	            items.push("<li>" + data[i].attributes.title + "</li>");
-                }
-            $( "#main-list" ).append(items.join( "" ));
-            });
+            loadRoot();
         }
         else if(e.which == 39) {
         }
@@ -28,11 +34,12 @@ $( document ).ready(function() {
 </script>
 </head>
 <body>
-<p>Hello, World</p>
-<p id="last-key">Last Key: none</p>
+<table>
+    <tr><td><p id="last-key">Last Key: none</p></td><td><p id="loading"></p></td></tr>
+</table>
 <table border="1">
     <tr><th>Show</th><th>Series</th><th>Episode</th></tr>
-    <tr><td><ul id="main-list" /></td><td /><td /></tr>
+    <tr><td><ul id="show" /></td><td><ul id="series" /></td><td><ul id="episode" /></td></tr>
 </table>
 </body>
 </html>
