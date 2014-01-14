@@ -15,6 +15,11 @@ server.post('/api/player/pause', mediaPlayer.pause);
 server.get('/api/media/tvshows', mediaLibrary.getAllTvShows);
 server.get('/api/media/children/:key', mediaLibrary.getChildrenByKey);
 
+// Static content (GUI):
+server.get(/\/gui\/?.*/, restify.serveStatic({
+	    directory: './static'
+		}));
+
 server.listen(8080, function() {
     console.log('%s listening at %s', server.name, server.url);
 });
