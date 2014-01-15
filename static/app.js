@@ -1,3 +1,5 @@
+// Helpers to show loading message
+// TODO: Turn these into a AJAX spinner
 function loading() {
     $( "#loading" ).text("Loading...");
 }
@@ -5,6 +7,7 @@ function doneLoading() {
     $( "#loading" ).text("");
 }
 
+// Load the root directory (Actually TVShows for now!)
 function loadRoot() {
     loading();
     var jqxhr = $.getJSON( "/api/media/tvshows", function(data) {
@@ -17,6 +20,7 @@ function loadRoot() {
     });
 }
 
+// Load the Series List
 function loadSeriesList(key) {
     loading();
     $( "#series" ).empty();
@@ -34,17 +38,7 @@ function loadSeriesList(key) {
     });
 }
 
-function play(key) {
-
-    var playPath = 'http://yoshi:32400/library/parts/' + key +'/file.mkv';
-    $.ajax({
-	   url : '/api/player/play',
-	   data : JSON.stringify({ 'url' : playPath }),
-	   contentType : 'application/json',
-	   type : 'POST',
-	   });
-}
-
+// Load the Episode List
 function loadEpisodeList(key) {
     loading();
     $( "#episode" ).empty();
@@ -61,12 +55,24 @@ function loadEpisodeList(key) {
     });
 }
 
+// Play a file
+function play(key) {
+
+    var playPath = 'http://yoshi:32400/library/parts/' + key +'/file.mkv';
+    $.ajax({
+	   url : '/api/player/play',
+	   data : JSON.stringify({ 'url' : playPath }),
+	   contentType : 'application/json',
+	   type : 'POST',
+	   });
+}
+
+// Listens for keys to be pressed...
 function keyListener() {
     $("body").keydown(function(e) {
         $( "#last-key" ).text("Last Key: " + e.which);
         console.log(e.which);
         if(e.which == 37) {
-            loadRoot();
         }
         else if(e.which == 39) {
         }
