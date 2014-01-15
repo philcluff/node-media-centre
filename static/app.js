@@ -25,7 +25,7 @@ function loadSeriesList(key) {
     var jqxhr = $.getJSON( "/api/media/children/" + key, function(data) {
         var items = [];
         for (var i = 0; i < data.length; i++) {
-	    if (data[i].attributes.ratingKey) {
+	    if (data[i].attributes.ratingKey) { // Trim out anything that doesn't have a true chid element. EG: "All Episodes"
 		items.push("<li onclick=\"loadEpisodeList(this.id)\" id=\"" + data[i].attributes.ratingKey  + "\">" + data[i].attributes.title + "</li>");
 	    }
         }
@@ -34,8 +34,15 @@ function loadSeriesList(key) {
     });
 }
 
-function play() {
-    alert("Play!");
+function play(key) {
+
+    var playPath = 'http://yoshi:32400/library/parts/' + key +'/file.mkv';
+    $.ajax({
+	   url : '/api/player/play',
+	   data : JSON.stringify({ 'url' : playPath }),
+	   contentType : 'application/json',
+	   type : 'POST',
+	   });
 }
 
 function loadEpisodeList(key) {
@@ -46,7 +53,7 @@ function loadEpisodeList(key) {
         var items = [];
         for (var i = 0; i < data.length; i++) {
 	    if (data[i].attributes.ratingKey) {
-		items.push("<li onclick=\"play()\" id=\"" + data[i].attributes.ratingKey  + "\">" + data[i].attributes.title + "</li>");
+		items.push("<li onclick=\"play(this.id)\" id=\"" + data[i].media[0].part[0].attributes.id  + "\">" + data[i].attributes.title + "</li>");
 	    }
         }
         $( "#episode" ).append(items.join( "" ));
