@@ -7,6 +7,20 @@ function doneLoading() {
     $( "#loading" ).text("");
 }
 
+function pause() {
+    $.ajax({
+	    url : '/api/player/pause',
+	    type : 'POST'
+	    });
+}
+
+function stop() {
+    $.ajax({
+	    url : '/api/player/stop',
+	    type : 'POST'
+	    });
+}
+
 // Load the root directory (Actually TVShows for now!)
 function loadRoot() {
     loading();
