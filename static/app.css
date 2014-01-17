@@ -1,6 +1,66 @@
+body {
+    background-color:rgb(0,0,0);
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+    color:rgb(255,255,255);
+}
+
 ul {
     padding-left: 30px;
     padding-right: 15px;
     padding-top: 10px;
     padding-bottom: 10px;
+    list-style-type: none;
 }
+
+#status {
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    padding: 5px;
+    background-color:rgb(50,50,50);
+    border:1px solid rgb(255,255,255);
+    font-size:14pt;
+    width: 280px;
+}
+
+table { 
+    font-size: inherit; 
+}
+
+div.status td {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#wrapper{
+    width:80%;
+    margin-left:9%;
+}
+
+#left {
+    float: left;
+    width: 33%;
+    height: 100%;
+    font-size:16pt;
+    overflow: auto;
+}
+
+#middle {
+    float: left;
+    width: 34%;
+    height: 100%;
+    overflow: auto;
+    font-size:16pt;
+}
+
+#right {
+    float:left;
+    width: 33%;
+    height: 100%;
+    overflow: auto;
+    font-size:16pt;
+}
+
+#left::-webkit-scrollbar { width: 0 !important }
+#middle::-webkit-scrollbar { width: 0 !important }
+#right::-webkit-scrollbar { width: 0 !important }

@@ -1,7 +1,6 @@
-// Helpers to show loading message
-// TODO: Turn these into a AJAX spinner
+// Helpers to show loading spinner
 function loading() {
-    $( "#loading" ).text("Loading...");
+    $( "#loading" ).append('<img src="images/ajax-loader.gif" />');
 }
 function doneLoading() {
     $( "#loading" ).text("");

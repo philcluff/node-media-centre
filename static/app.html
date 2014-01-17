@@ -8,15 +8,18 @@ $( document ).ready(function() {
     keyListener();
 });
 </script>
-<link rel="stylesheet" type="text/css" href="app.css">
+<link rel="stylesheet" type="text/css" href="app-poc.css">
 </head>
 <body>
-<table border="1">
-    <tr><td onclick="pause()">Pause</td><td onclick="stop()">Stop</td><td><p id="last-key">Last Key: none</p></td><td><p id="loading"></p></td></tr>
-</table>
-<table border="1">
-    <tr><th>Show</th><th>Series</th><th>Episode</th></tr>
-    <tr><td><ul id="show" /></td><td><ul id="series" /></td><td><ul id="episode" /></td></tr>
-</table>
+<div id="status" class="status">
+  <table border="0">
+    <tr><td onclick="pause()">Pause</td><td onclick="stop()">Stop</td><td><p id="last-key">Last Key:</p></td><td><p id="loading"></p></td></tr>
+  </table>
+</div>
+<div id="wrapper">
+  <div id="left"><ul id="show" /></div>
+  <div id="middle"><ul id="series" /></div>
+  <div id="right"><ul id="episode" /></div>
+</div>
 </body>
 </html>
