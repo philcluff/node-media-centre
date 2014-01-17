@@ -20,6 +20,10 @@ function stop() {
 	    });
 }
 
+// FIXME: Nasty hack for now to save cycles clearing the last browsed item in the lists
+var lastShowId;
+var lastSeriesId;
+
 // Load the root directory (Actually TVShows for now!)
 function loadRoot() {
     loading();
@@ -37,6 +41,8 @@ function loadRoot() {
 function loadSeriesList(key) {
     loading();
     $( '#'+key ).css( "color", "red" );
+    $( '#'+lastShowId ).css( "color", "" );
+    lastShowId = key;
     $( "#series" ).empty();
     $( "#episode" ).empty();
     console.log("Click: " + key);
@@ -55,6 +61,9 @@ function loadSeriesList(key) {
 // Load the Episode List
 function loadEpisodeList(key) {
     loading();
+    $( '#'+key ).css( "color", "red" );
+    $( '#'+lastSeriesId ).css( "color", "" );
+    lastSeriesId = key;
     $( "#episode" ).empty();
     console.log("Click: " + key);
     var jqxhr = $.getJSON( "/api/media/children/" + key, function(data) {
