@@ -26,7 +26,7 @@ function loadRoot() {
     var jqxhr = $.getJSON( "/api/media/tvshows", function(data) {
         var items = [];
         for (var i = 0; i < data.length; i++) {
-            items.push("<li onclick=\"loadSeriesList(this.id)\" id=\"" + data[i].attributes.ratingKey  + "\">" + data[i].attributes.title + "</li>");
+            items.push('<li onclick="loadSeriesList(this.id)" id="' + data[i].attributes.ratingKey  + '">' + data[i].attributes.title + '</li>');
         }
         $( "#show" ).append(items.join( "" ));
 	doneLoading();
@@ -43,7 +43,7 @@ function loadSeriesList(key) {
         var items = [];
         for (var i = 0; i < data.length; i++) {
 	    if (data[i].attributes.ratingKey) { // Trim out anything that doesn't have a true chid element. EG: "All Episodes"
-		items.push("<li onclick=\"loadEpisodeList(this.id)\" id=\"" + data[i].attributes.ratingKey  + "\">" + data[i].attributes.title + "</li>");
+		items.push('<li onclick="loadEpisodeList(this.id)" id="' + data[i].attributes.ratingKey  + '">' + data[i].attributes.title + '</li>');
 	    }
         }
         $( "#series" ).append(items.join( "" ));
@@ -60,7 +60,7 @@ function loadEpisodeList(key) {
         var items = [];
         for (var i = 0; i < data.length; i++) {
 	    if (data[i].attributes.ratingKey) {
-		items.push("<li onclick=\"play(this.id)\" id=\"" + data[i].media[0].part[0].attributes.id  + "\">" + data[i].attributes.title + "</li>");
+		items.push('<li onclick="play(this.id)" id="' + data[i].media[0].part[0].attributes.id  + '">' + data[i].attributes.title + '</li>');
 	    }
         }
         $( "#episode" ).append(items.join( "" ));
