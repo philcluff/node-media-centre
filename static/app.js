@@ -36,6 +36,7 @@ function loadRoot() {
 // Load the Series List
 function loadSeriesList(key) {
     loading();
+    $( '#'+key ).css( "color", "red" );
     $( "#series" ).empty();
     $( "#episode" ).empty();
     console.log("Click: " + key);
