@@ -39,7 +39,7 @@ div.status td {
 
 #left {
     float: left;
-    width: 33%;
+    width: 40%;
     height: 100%;
     font-size:16pt;
     overflow: auto;
@@ -47,7 +47,7 @@ div.status td {
 
 #middle {
     float: left;
-    width: 34%;
+    width: 20%;
     height: 100%;
     overflow: auto;
     font-size:16pt;
@@ -55,7 +55,7 @@ div.status td {
 
 #right {
     float:left;
-    width: 33%;
+    width: 40%;
     height: 100%;
     overflow: auto;
     font-size:16pt;

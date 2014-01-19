@@ -15,7 +15,7 @@ server.post('/api/player/pause', mediaPlayer.pause);
 server.get('/api/media/tvshows', mediaLibrary.getAllTvShows);
 server.get('/api/media/children/:key', mediaLibrary.getChildrenByKey);
 
-// Static content (GUI):
+// Static content (GUI)
 server.get(/\/gui\/?.*/, restify.serveStatic({
 	    directory: './static'
 		}));
