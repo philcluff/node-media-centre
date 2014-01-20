@@ -4,12 +4,26 @@ body {
     color:rgb(255,255,255);
 }
 
+li {
+    padding-left: 2px;
+}
+
 ul {
     padding-left: 30px;
     padding-right: 15px;
     padding-top: 10px;
     padding-bottom: 10px;
     list-style-type: none;
+}
+
+li.highlighted {
+    background-color: rgb(255,255,255);
+    color: rgb(0,0,0);
+}
+
+li.selected {
+    background-color: rgb(255,0,0);
+    color: rgb(0,0,0);
 }
 
 #status {

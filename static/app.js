@@ -3,6 +3,16 @@ function loading() {
     $( "#loading" ).append('<img src="images/ajax-loader.gif" />');
 }
 function doneLoading() {
+    // FIXME - Shouldn't really be here.
+    // JQuery for hovering over list items...
+    $( "li" ).hover(
+	function() {
+	    $( this ).addClass( "highlighted" );
+	}, function() {
+	    $( this ).removeClass( "highlighted" );
+	}
+    );
+
     $( "#loading" ).text("");
 }
 
@@ -33,6 +43,7 @@ function loadRoot() {
             items.push('<li onclick="loadSeriesList(this.id)" id="' + data[i].attributes.ratingKey  + '">' + data[i].attributes.title + '</li>');
         }
         $( "#show" ).append(items.join( "" ));
+
 	doneLoading();
     });
 }
@@ -40,8 +51,8 @@ function loadRoot() {
 // Load the Series List
 function loadSeriesList(key) {
     loading();
-    $( '#'+key ).css( "color", "red" );
-    $( '#'+lastShowId ).css( "color", "" );
+    $( '#'+key ).addClass( "selected" );
+    $( '#'+lastShowId ).removeClass( "selected" );
     lastShowId = key;
     $( "#series" ).empty();
     $( "#episode" ).empty();
@@ -61,8 +72,8 @@ function loadSeriesList(key) {
 // Load the Episode List
 function loadEpisodeList(key) {
     loading();
-    $( '#'+key ).css( "color", "red" );
-    $( '#'+lastSeriesId ).css( "color", "" );
+    $( '#'+key ).addClass( "selected" );
+    $( '#'+lastSeriesId ).removeClass( "selected" );
     lastSeriesId = key;
     $( "#episode" ).empty();
     console.log("Click: " + key);
