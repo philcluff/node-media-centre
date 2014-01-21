@@ -53,8 +53,10 @@ function loadRoot() {
 // Load the Series List
 function loadSeriesList(key) {
     loading();
-    $( '#'+key ).addClass( "selected" );
-    $( '#'+lastShowId ).removeClass( "selected" );
+    if (key != lastShowId) {
+	$( '#'+key ).addClass( "selected" );
+	$( '#'+lastShowId ).removeClass( "selected" );
+    }
     lastShowId = key;
     $( "#series" ).empty();
     $( "#episode" ).empty();
@@ -74,8 +76,10 @@ function loadSeriesList(key) {
 // Load the Episode List
 function loadEpisodeList(key) {
     loading();
-    $( '#'+key ).addClass( "selected" );
-    $( '#'+lastSeriesId ).removeClass( "selected" );
+    if (key != lastSeriesId) {
+	$( '#'+key ).addClass( "selected" );
+	$( '#'+lastSeriesId ).removeClass( "selected" );
+    }
     lastSeriesId = key;
     $( "#episode" ).empty();
     console.log("Click: " + key);
