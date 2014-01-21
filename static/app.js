@@ -1,3 +1,7 @@
+// FIXME: Nasty hack for now to save cycles clearing the last browsed item in the lists
+var lastShowId;
+var lastSeriesId;
+
 // Helpers to show loading spinner
 function loading() {
     $( "#loading" ).append('<img src="images/ajax-loader.gif" />');
@@ -16,6 +20,7 @@ function doneLoading() {
     $( "#loading" ).text("");
 }
 
+// Raw pause call to the player
 function pause() {
     $.ajax({
 	    url : '/api/player/pause',
@@ -23,16 +28,13 @@ function pause() {
 	    });
 }
 
+// Raw stop call to the player
 function stop() {
     $.ajax({
 	    url : '/api/player/stop',
 	    type : 'POST'
 	    });
 }
-
-// FIXME: Nasty hack for now to save cycles clearing the last browsed item in the lists
-var lastShowId;
-var lastSeriesId;
 
 // Load the root directory (Actually TVShows for now!)
 function loadRoot() {
@@ -82,9 +84,11 @@ function loadEpisodeList(key) {
         for (var i = 0; i < data.length; i++) {
 	    if (data[i].attributes.ratingKey) {
 		if (data[i].attributes.viewCount) {
+		    // Watched
 		    items.push('<li class="epwatched" onclick="play(this.id, ' + data[i].attributes.ratingKey + ')" id="' + data[i].media[0].part[0].attributes.id  + '">' + data[i].attributes.title + '</li>');
 		}
 		else {
+		    // Unwatched
 		    items.push('<li onclick="play(this.id, '  + data[i].attributes.ratingKey + ')" id="' + data[i].media[0].part[0].attributes.id  + '">' + data[i].attributes.title + '</li>');
 		}
 	    }
@@ -97,11 +101,10 @@ function loadEpisodeList(key) {
 // Play a file
 function play(mediaKey, epKey) {
 
-    // TODO: Flag this item as watched too...
     $( "#" + mediaKey ).addClass( "epwatched" );
 
-    console.log('mediaKey: ' + mediaKey + ' epKey: ' + epKey);
-
+    // This logic doesn't belong here. What's returned by the plex api shoudl be a full URL really.
+    // This could be added in our wrapper around plex-api.
     var playPath = 'http://yoshi:32400/library/parts/' + mediaKey +'/file.mkv';
     $.ajax({
 	   url : '/api/player/play',
@@ -110,7 +113,7 @@ function play(mediaKey, epKey) {
 	   type : 'POST',
 	   });
 
-    // TODO: Check for a 200 here, and update make the play count call accordingly.
+    // TODO: Should we bother checking for a 200 here, and update make the play count call accordingly?
     $.ajax({
 	   url : '/api/media/watched/' + epKey,
 	   contentType : 'application/json',
@@ -119,6 +122,7 @@ function play(mediaKey, epKey) {
     
 }
 
+// For future development...
 // Listens for keys to be pressed...
 function keyListener() {
     $("body").keydown(function(e) {

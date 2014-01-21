@@ -14,7 +14,8 @@ server.post('/api/player/pause', mediaPlayer.pause);
 // Media Library API
 server.get('/api/media/tvshows', mediaLibrary.getAllTvShows);
 server.get('/api/media/children/:key', mediaLibrary.getChildrenByKey);
-server.post('/api/media/watched/:key', mediaLibrary.flagAsWatched);
+server.post('/api/media/watched/:key', mediaLibrary.flagAsWatched); // Flag a tree as watched
+server.post('/api/media/unwatched/:key', mediaLibrary.flagAsUnwatched); // Flag a tree as unwatched
 
 // Static content (GUI)
 server.get(/\/gui\/?.*/, restify.serveStatic({
