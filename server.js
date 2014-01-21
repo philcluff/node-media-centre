@@ -3,7 +3,7 @@ var mediaPlayer = require("media-player");
 var mediaLibrary = require("plex");
 
 // Startup REST server and setup request mappings
-var server = restify.createServer();
+var server = restify.createServer({name: 'NodeMediaCenter'});
 
 // Media Player API
 server.use(restify.bodyParser());
