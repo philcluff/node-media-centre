@@ -7,7 +7,7 @@ function loading() {
     $( "#loading" ).append('<img src="images/ajax-loader.gif" />');
 }
 function doneLoading() {
-    // FIXME - Shouldn't really be here. But works nicely here
+    // FIXME - Shouldn't really be here. But works nicely here for now.
     // JQuery for hovering over list items...
     $( "li" ).hover(
 	function() {
@@ -103,7 +103,7 @@ function play(mediaKey, epKey) {
 
     $( "#" + mediaKey ).addClass( "epwatched" );
 
-    // This logic doesn't belong here. What's returned by the plex api shoudl be a full URL really.
+    // This logic doesn't belong here. What's returned by the plex api should be a full URL really.
     // This could be added in our wrapper around plex-api.
     var playPath = 'http://yoshi:32400/library/parts/' + mediaKey +'/file.mkv';
     $.ajax({
@@ -113,7 +113,7 @@ function play(mediaKey, epKey) {
 	   type : 'POST',
 	   });
 
-    // TODO: Should we bother checking for a 200 here, and update make the play count call accordingly?
+    // TODO: Should we bother checking for a 200 here, and update the watched flag  accordingly?
     $.ajax({
 	   url : '/api/media/watched/' + epKey,
 	   contentType : 'application/json',
