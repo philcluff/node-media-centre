@@ -5,12 +5,13 @@ body {
 }
 
 li {
-    padding-left: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 ul {
-    padding-left: 30px;
-    padding-right: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
     list-style-type: none;
