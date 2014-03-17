@@ -1,1 +1,3 @@
-OMX_PLAYER='omxplayer -o local ' node server.js
+export OMX_PLAYER='omxplayer -o local '
+export PLEX_SERVER='yoshi'
+node server.js
