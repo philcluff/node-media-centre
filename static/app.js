@@ -117,7 +117,7 @@ function play(mediaKey, epKey) {
 	   type : 'POST',
 	   });
 
-    // TODO: Should we bother checking for a 200 here, and update the watched flag  accordingly?
+    // TODO: Should we bother checking for a 200 here, and update the watched flag accordingly?
     $.ajax({
 	   url : '/api/media/watched/' + epKey,
 	   contentType : 'application/json',
@@ -132,9 +132,8 @@ function keyListener() {
     $("body").keydown(function(e) {
         $( "#last-key" ).text("Last Key: " + e.which);
         console.log(e.which);
-        if(e.which == 37) {
-        }
-        else if(e.which == 39) {
+        if(e.which == 32) {
+            pause();
         }
     });
 }
