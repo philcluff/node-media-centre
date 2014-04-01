@@ -35,9 +35,9 @@ NodeJSMediaCentre with a sizable TV Library:
 
 ## Pre-provided helper scripts
 
-run-pi-hdmi-audio.sh - Uses OMXPlayer, outputting audio over HDMI. A good starting point on the Raspberry Pi.
-run-pi-local-audio.sh - Uses OMXPlayer, outputting audio over 3.5mm jack.
-run-mac-vlc.sh - Calls VLC in the default install path on OSX. Works passibly, but keycontrol of the player doesn't work.
+* run-pi-hdmi-audio.sh - Uses OMXPlayer, outputting audio over HDMI. A good starting point on the Raspberry Pi.
+* run-pi-local-audio.sh - Uses OMXPlayer, outputting audio over 3.5mm jack.
+* run-mac-vlc.sh - Calls VLC in the default install path on OSX. Works passibly, but keycontrol of the player doesn't work.
 
 # TODO
 
