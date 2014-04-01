@@ -25,7 +25,7 @@ function pause() {
     $.ajax({
 	    url : '/api/player/pause',
 	    type : 'POST'
-	    });
+    });
 }
 
 // Raw stop call to the player
@@ -89,11 +89,11 @@ function loadEpisodeList(key) {
 	    if (data[i].attributes.ratingKey) {
 		if (data[i].attributes.viewCount) {
 		    // Watched
-		    items.push('<li class="epwatched" onclick="play(this.id, ' + data[i].attributes.ratingKey + ')" id="' + data[i].media[0].part[0].attributes.id  + '">' + data[i].attributes.title + '</li>');
+		    items.push('<li class="epwatched" onclick="play(this.id, ' + data[i].attributes.ratingKey + ", '" + data[i].attributes.playbackUrl + "'" + ')" id="' + data[i].media[0].part[0].attributes.id  + '">' + data[i].attributes.title + '</li>');
 		}
 		else {
 		    // Unwatched
-		    items.push('<li onclick="play(this.id, '  + data[i].attributes.ratingKey + ')" id="' + data[i].media[0].part[0].attributes.id  + '">' + data[i].attributes.title + '</li>');
+		    items.push('<li onclick="play(this.id, '  + data[i].attributes.ratingKey + ", '" + data[i].attributes.playbackUrl + "'" + ')" id="' + data[i].media[0].part[0].attributes.id  + '">' + data[i].attributes.title + '</li>');
 		}
 	    }
         }
@@ -103,13 +103,10 @@ function loadEpisodeList(key) {
 }
 
 // Play a file
-function play(mediaKey, epKey) {
+function play(mediaKey, epKey, playPath) {
 
     $( "#" + mediaKey ).addClass( "epwatched" );
 
-    // This logic doesn't belong here. What's returned by the plex api should be a full URL really.
-    // This could be added in our wrapper around plex-api.
-    var playPath = 'http://yoshi:32400/library/parts/' + mediaKey +'/file.mkv';
     $.ajax({
 	   url : '/api/player/play',
 	   data : JSON.stringify({ 'url' : playPath }),
