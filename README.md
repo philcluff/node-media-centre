@@ -6,6 +6,9 @@ A Chromecast Style Node.JS Media Centre Web App for Plex designed to run on a Ra
 
 # Screenshot
 
+NodeJSMediaCentre with a sizable TV Library:
+![alt text](http://philcluff.co.uk/drop/nodejs.png "NodeJSMediaCentre with a sizable TV Library")
+
 # Installing & Running
 
 ## Dependencies
