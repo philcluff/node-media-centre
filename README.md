@@ -15,8 +15,8 @@ NodeJSMediaCentre with a sizable TV Library:
 
 * A modern version of Node.js (Tested on v0.10.24)
 * A media player which can play remote files over HTTP and can be launched from a terminal. Tested:
-** VLC
-** OMXPlayer
+  * VLC
+  * OMXPlayer
 * Plex hosted somewhere with a library of TV Shows
 
 ## Starting NodeJSMediaCentre (Required Environment Variables)
