@@ -24,6 +24,14 @@ NodeJSMediaCentre with a sizable TV Library:
 * PLEX_SERVER - Hostname of your Plex Server
 * PLEX_SERVER_PORT - Port of your Plex Server
 
+Set all these (Or use one of the helper scripts listed below), then:
+
+    node server.js
+     
+Then open a browser and navigate to:
+
+    http://localhost:8080/gui/app.html
+
 ## Installing Standalone on a Raspberry Pi
 
 * Start with the latest Raspbian image
