@@ -28,6 +28,18 @@ function pause() {
     });
 }
 
+// Re-flag a tree (Usually series) as unwatched 
+function unwatched(event, id) {
+
+    loading();
+    event.cancelBubble = true; // Cancel event bubbling so that the series doesn't immediately re-load.
+    $.ajax({
+	    url : '/api/media/unwatched/' + id,
+	    type : 'POST',
+            success : doneLoading() // Note: This should be a call to reload the series view, but this call returns asynchronously so this doesn't work :(
+    });
+}
+
 // Raw stop call to the player
 function stop() {
     $.ajax({
@@ -65,7 +77,7 @@ function loadSeriesList(key) {
         var items = [];
         for (var i = 0; i < data.length; i++) {
 	    if (data[i].attributes.ratingKey) { // Trim out anything that doesn't have a true chid element. EG: "All Episodes"
-		items.push('<li onclick="loadEpisodeList(this.id)" id="' + data[i].attributes.ratingKey  + '">' + data[i].attributes.title + '</li>');
+		items.push('<li onclick="loadEpisodeList(this.id)" id="' + data[i].attributes.ratingKey  + '">' + data[i].attributes.title + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span onclick="unwatched(event, ' + data[i].attributes.ratingKey + ')" style="font-size:8pt;">reset</span></li>');
 	    }
         }
         $( "#series" ).append(items.join( "" ));
