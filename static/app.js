@@ -72,7 +72,6 @@ function loadSeriesList(key) {
     lastShowId = key;
     $( "#series" ).empty();
     $( "#episode" ).empty();
-    console.log("Click: " + key);
     var jqxhr = $.getJSON( "/api/media/children/" + key, function(data) {
         var items = [];
         for (var i = 0; i < data.length; i++) {
@@ -94,7 +93,6 @@ function loadEpisodeList(key) {
     }
     lastSeriesId = key;
     $( "#episode" ).empty();
-    console.log("Click: " + key);
     var jqxhr = $.getJSON( "/api/media/children/" + key, function(data) {
         var items = [];
         for (var i = 0; i < data.length; i++) {
@@ -140,7 +138,6 @@ function play(mediaKey, epKey, playPath) {
 function keyListener() {
     $("body").keydown(function(e) {
         $( "#last-key" ).text("Last Key: " + e.which);
-        console.log(e.which);
         if(e.which == 32) {
             pause();
         }
