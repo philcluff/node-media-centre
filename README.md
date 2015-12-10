@@ -1,12 +1,12 @@
-# NodeJSMediaCentre
+# NodeJSMediaCenter
 
 # Overview
 
-A Chromecast Style Node.JS Media Centre Web App for Plex designed to run on a Raspberry Pi, which uses OMXPlayer as a front end.
+A Chromecast Style Node.JS Media Center Web App for Plex designed to run on a Raspberry Pi, which uses OMXPlayer as a front end.
 
 # Screenshot
 
-NodeJSMediaCentre with a sizable TV Library:
+NodeJSMediaCenter with a sizable TV Library:
 ![alt text](http://philcluff.co.uk/drop/nodejs.png?raw=true "NodeJSMediaCentre with a sizable TV Library" =400x)
 
 # Installing & Running
@@ -38,7 +38,7 @@ Then open a browser and navigate to:
 * Re-configure the boot image of the Pi to have atleast TODO graphics memory
 * Install latest Node.js
 * Install latest OMXPlayer
-* Checkout NodeJSMediaCentre from Github
+* Checkout NodeJSMediaCenter from Github
 * Edit run script (EG: run-pi-hdmi-audio.sh) to set your player options, and Plex hostname/port
 
 ## Pre-provided helper scripts
